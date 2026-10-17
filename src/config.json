@@ -1,0 +1,13 @@
+{
+  "settings": {
+    "creator": "Nted",
+    "apiName": "NtedApis",
+    "description": "A free and reliable API service designed for modern application development. Built with Node.js and TypeScript, delivering fast performance, stable endpoints, and easy integration.",
+    "apiVersion": "v1.0",
+    "visitors": "0",
+    "favicon": "/src/nted.jpg",
+    "thumbnail": "/src/thumbnail.jpg",
+    "channelUrl": "https://whatsapp.com/channel/0029Vb6rhzWDeON0EkFJ4G2H",
+    "github": "https://github.com/Nted3xec"
+  }
+}

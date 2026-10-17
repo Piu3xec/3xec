@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Facebook Downloader",
+    "endpoint": "/api/download/facebook",
+    "filename": "facebook",
+    "method": "GET",
+    "params": [
+      {
+        "name": "url",
+        "required": true,
+        "description": "Facebook URL"
+      }
+    ]
+  },
+  {
+    "name": "TikTok Transcriber",
+    "endpoint": "/api/download/tiktok",
+    "filename": "tiktok",
+    "method": "GET",
+    "params": [
+      {
+        "name": "url",
+        "required": true,
+        "description": "TikTok URL"
+      }
+    ]
+  }
+]

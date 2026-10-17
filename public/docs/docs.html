@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Tedd4Lose | Documents</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/docs/docs.css">
+
+<style>
+  :root {
+    /* --- POP ART PALETTE --- */
+    --pop-black: #0A0A0A;
+    --pop-white: #FFFDF5;
+    --pop-yellow: #FFE600;
+    --pop-red: #FF2E4D;
+    --pop-pink: #FF4FBA;
+    --pop-cyan: #00E5FF;
+    --pop-blue: #2E5BFF;
+    --pop-purple: #A020F0;
+    --pop-orange: #FF7A00;
+    --pop-green: #00E676;
+
+    --pop-border: 4px solid var(--pop-black);
+    --pop-shadow-sm: 4px 4px 0 0 var(--pop-black);
+    --pop-shadow: 7px 7px 0 0 var(--pop-black);
+    --pop-shadow-lg: 10px 10px 0 0 var(--pop-black);
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* ---------- BACKGROUND HALFTONE DOTS ---------- */
+  body {
+    background: var(--pop-yellow);
+    background-image:
+      radial-gradient(circle, var(--pop-black) 1.2px, transparent 1.6px),
+      radial-gradient(circle, var(--pop-black) 1.2px, transparent 1.6px);
+    background-size: 22px 22px;
+    background-position: 0 0, 11px 11px;
+    font-family: 'Bangers', 'Luckiest Guy', cursive, sans-serif;
+    letter-spacing: 0.03em;
+    color: var(--pop-black);
+    position: relative;
+  }
+
+  /* Corner starbursts */
+  body::before,
+  body::after {
+    content: '';
+    position: fixed;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background:
+      repeating-conic-gradient(
+        from 0deg,
+        var(--pop-red) 0deg 10deg,
+        transparent 10deg 20deg
+      );
+    opacity: .12;
+    pointer-events: none;
+    z-index: 0;
+    animation: spin 60s linear infinite;
+  }
+  body::before { top: -120px; left: -120px; }
+  body::after {
+    bottom: -120px; right: -120px;
+    background:
+      repeating-conic-gradient(
+        from 0deg,
+        var(--pop-cyan) 0deg 10deg,
+        transparent 10deg 20deg
+      );
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  h1, h2, h3, .font-black, .font-heading {
+    font-family: 'Bangers', 'Luckiest Guy', cursive, sans-serif !important;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    -webkit-text-stroke: 1.5px var(--pop-black);
+    text-shadow: 3px 3px 0 var(--pop-red);
+  }
+
+  /* ---------- DISABLE BLOBS ---------- */
+  .blob { display: none !important; }
+
+  /* ---------- HEADER ---------- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--pop-white);
+    border-bottom: 5px solid var(--pop-black);
+    box-shadow: 0 6px 0 0 var(--pop-black);
+  }
+
+  /* ---------- ICON BUTTONS ---------- */
+  .clay-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--pop-white);
+    border: var(--pop-border);
+    box-shadow: var(--pop-shadow-sm);
+    color: var(--pop-black);
+    border-radius: 50%;
+    transition: transform .08s ease, box-shadow .08s ease, background .15s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  .clay-icon-btn:hover {
+    background: var(--pop-cyan);
+    transform: rotate(-6deg);
+  }
+  .clay-icon-btn:active {
+    transform: translate(4px, 4px) rotate(0);
+    box-shadow: 0 0 0 0 var(--pop-black);
+  }
+
+  /* ---------- CARDS ---------- */
+  .clay-card {
+    background: var(--pop-white);
+    border: var(--pop-border);
+    box-shadow: var(--pop-shadow-lg);
+    position: relative;
+  }
+
+  /* Comic corner marker */
+  .clay-card::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    width: 32px;
+    height: 32px;
+    background: var(--pop-red);
+    border: 3px solid var(--pop-black);
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 2px 2px 0 var(--pop-black);
+  }
+
+  /* ---------- SIDEBAR ---------- */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 340px;
+    max-width: 88vw;
+    background: var(--pop-white);
+    border-right: 5px solid var(--pop-black);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-110%);
+    transition: transform .28s cubic-bezier(.5, 1.8, .4, 1);
+    z-index: 60;
+    overflow: hidden;
+  }
+
+  /* Comic burst on sidebar */
+  .sidebar::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 90px;
+    height: 90px;
+    background:
+      repeating-conic-gradient(
+        from 0deg,
+        var(--pop-pink) 0deg 15deg,
+        transparent 15deg 30deg
+      );
+    opacity: .25;
+    pointer-events: none;
+    animation: spin 20s linear infinite;
+  }
+
+  .sidebar.open { transform: translateX(0); }
+
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 46, 77, .35);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
+    z-index: 55;
+  }
+  .sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+
+  /* ---------- INPUT ---------- */
+  .clay-input {
+    width: 100%;
+    background: var(--pop-white);
+    border: var(--pop-border);
+    box-shadow: var(--pop-shadow-sm);
+    padding: 0 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--pop-black);
+    outline: none;
+    transition: transform .08s ease, box-shadow .08s ease, background .15s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .clay-input::placeholder {
+    color: #888;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .clay-input:focus {
+    background: var(--pop-cyan);
+    transform: translate(-2px, -2px) rotate(-1deg);
+    box-shadow: var(--pop-shadow);
+  }
+
+  /* ---------- CONSOLE (Terminal) ---------- */
+  .clay-console {
+    border: var(--pop-border);
+    box-shadow: var(--pop-shadow-lg);
+    background: var(--pop-black);
+    position: relative;
+  }
+
+  .clay-console-screen {
+    background:
+      linear-gradient(180deg, #1A0033 0%, #0A0A0A 100%);
+    color: #E5E5E5;
+  }
+
+  /* Scanline halftone on console */
+  .clay-console-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        rgba(255, 46, 77, .06) 0px,
+        rgba(255, 46, 77, .06) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .clay-console-screen > * { position: relative; z-index: 2; }
+
+  .blink-cursor { animation: blink 1s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---------- SIDEBAR TREE ---------- */
+  #sidebar-tree button,
+  #sidebar-tree a {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--pop-white);
+    border: 3px solid var(--pop-black);
+    box-shadow: var(--pop-shadow-sm);
+    padding: 12px 14px;
+    font-family: 'Bangers', cursive;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.06em;
+    color: var(--pop-black);
+    text-transform: uppercase;
+    transition: transform .08s ease, box-shadow .08s ease, background .15s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  #sidebar-tree button:hover,
+  #sidebar-tree a:hover {
+    background: var(--pop-pink);
+    color: var(--pop-white);
+    transform: translate(-3px, -3px) rotate(-1deg);
+    box-shadow: 7px 7px 0 0 var(--pop-black);
+  }
+  #sidebar-tree button:active,
+  #sidebar-tree a:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 0 var(--pop-black);
+  }
+
+  /* ---------- REVEAL ANIMATION ---------- */
+  .reveal { animation: popIn .4s cubic-bezier(.5, 1.8, .4, 1) both; }
+  @keyframes popIn {
+    0%   { opacity: 0; transform: translateY(20px) scale(.9) rotate(-3deg); }
+    60%  { opacity: 1; transform: translateY(-4px) scale(1.02) rotate(1deg); }
+    100% { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+  }
+
+  /* ---------- TOAST ---------- */
+  #custom-toast > div {
+    border: var(--pop-border) !important;
+    box-shadow: var(--pop-shadow) !important;
+    background: var(--pop-cyan) !important;
+    color: var(--pop-black);
+    border-radius: 12px !important;
+  }
+  #custom-toast #toast-message {
+    color: var(--pop-black) !important;
+    font-family: 'Bangers', cursive;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 16px !important;
+  }
+  #custom-toast .rounded-full {
+    border: 3px solid var(--pop-black);
+    background: var(--pop-yellow) !important;
+    color: var(--pop-black) !important;
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  /* ---------- OVERRIDES ---------- */
+  .border-dashed {
+    border-style: solid !important;
+    border-color: var(--pop-black) !important;
+    border-width: 3px !important;
+  }
+
+  /* Sidebar stat blocks */
+  .clay-card .rounded-2xl {
+    border: 3px solid var(--pop-black) !important;
+    box-shadow: 4px 4px 0 0 var(--pop-black);
+    background: var(--pop-white) !important;
+    border-radius: 4px !important;
+    transition: transform .15s ease;
+  }
+  .clay-card .rounded-2xl:hover {
+    transform: rotate(-1deg) translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 var(--pop-black);
+  }
+
+  /* Header brand */
+  #nav-title {
+    color: var(--pop-black) !important;
+    font-family: 'Bangers', cursive !important;
+    font-size: 28px !important;
+    line-height: 1 !important;
+    -webkit-text-stroke: 0;
+    text-shadow:
+      2px 2px 0 var(--pop-red),
+      4px 4px 0 var(--pop-black);
+    letter-spacing: 0.08em;
+  }
+  header span[style*="#A78BFA"] {
+    color: var(--pop-black) !important;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    background: var(--pop-yellow);
+    padding: 2px 8px;
+    border: 2px solid var(--pop-black);
+    display: inline-block;
+    transform: rotate(-2deg);
+    box-shadow: 2px 2px 0 var(--pop-black);
+  }
+
+  /* Legacy inline color overrides */
+  [style*="#1E1B4B"] { color: var(--pop-black) !important; }
+  [style*="#A78BFA"] { color: var(--pop-black) !important; }
+  [style*="#6D28D9"] { color: var(--pop-red) !important; }
+  [style*="#64748B"] { color: var(--pop-black) !important; opacity: .85; }
+  [style*="#94A3B8"] { color: var(--pop-black) !important; opacity: .85; }
+  [style*="#F5F3FF"],
+  [style*="background:#F5F3FF"] {
+    background: var(--pop-white) !important;
+  }
+
+  /* Scrollbar pop art */
+  ::-webkit-scrollbar { width: 12px; height: 12px; }
+  ::-webkit-scrollbar-track {
+    background: var(--pop-white);
+    border-left: 3px solid var(--pop-black);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--pop-red);
+    border: 3px solid var(--pop-black);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--pop-pink); }
+
+  /* Main section */
+  main { position: relative; z-index: 10; }
+
+  /* Flowing burst untuk tiap card */
+  @keyframes burst {
+    0%, 100% { transform: scale(1) rotate(0); }
+    50%      { transform: scale(1.08) rotate(3deg); }
+  }
+
+  /* Sidebar section title */
+  aside h2 {
+    font-size: 24px !important;
+    -webkit-text-stroke: 0;
+    text-shadow: 3px 3px 0 var(--pop-cyan);
+  }
+
+  /* Button di console header */
+  .clay-console .rounded-full {
+    border-width: 3px !important;
+    border-color: var(--pop-black) !important;
+    width: 14px !important;
+    height: 14px !important;
+    box-shadow: 2px 2px 0 var(--pop-black);
+  }
+
+  /* Monospace console text jadi lebih comic */
+  #term-logs {
+    font-family: 'JetBrains Mono', monospace !important;
+    text-shadow: 0 0 8px rgba(0, 229, 255, .35);
+  }
+
+  /* Font size term */
+  #term-logs .text-slate-400,
+  #term-logs .text-slate-500 {
+    color: #B0B0B0 !important;
+  }
+  #term-logs .text-emerald-400 { color: var(--pop-green) !important; }
+  #term-logs .text-sky-400     { color: var(--pop-cyan) !important; }
+  #term-logs .text-amber-400   { color: var(--pop-yellow) !important; }
+  #term-logs .text-rose-400    { color: var(--pop-red) !important; }
+
+  /* Footer text */
+  aside .font-mono {
+    font-family: 'Bangers', cursive !important;
+    letter-spacing: 0.1em;
+    font-size: 12px !important;
+  }
+
+  /* Input search icon */
+  input + i.fa-magnifying-glass,
+  i.fa-magnifying-glass {
+    color: var(--pop-black) !important;
+  }
+
+  /* No results state */
+  #no-results i {
+    color: var(--pop-red) !important;
+    -webkit-text-stroke: 0;
+  }
+
+  /* Intro/endpoint view headings */
+  #intro-view h2,
+  #intro-view h3,
+  #endpoint-view h2,
+  #endpoint-view h3 {
+    text-shadow: 4px 4px 0 var(--pop-pink);
+  }
+
+  /* Buttons inside endpoint card */
+  #endpoint-view button {
+    font-family: 'Bangers', cursive !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body class="min-h-screen flex flex-col relative overflow-x-hidden">
+
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="blob w-[420px] h-[420px] bg-purple-300/25 top-[-8%] left-[10%]"></div>
+    <div class="blob w-[380px] h-[380px] bg-blue-300/25 top-[20%] right-[5%]"></div>
+    <div class="blob w-[460px] h-[460px] bg-teal-200/20 bottom-[-10%] left-[25%]"></div>
+</div>
+
+<header id="site-header" class="site-header">
+    <div class="max-w-7xl mx-auto px-5 h-20 flex items-center gap-4 justify-between">
+        <button id="menu-toggle" class="clay-icon-btn" aria-label="Buka menu" aria-expanded="false" aria-controls="sidebar">
+            <i class="fa-solid fa-bars text-base"></i>
+        </button>
+
+        <div class="flex-1 min-w-0">
+            <h1 id="nav-title" class="font-black tracking-tight leading-none truncate">NTED</h1>
+            <span class="text-[10px] font-bold tracking-widest" style="color:#A78BFA">API PLATFORM</span>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+            <a href="/" class="clay-icon-btn" aria-label="Kembali ke Beranda">
+                <i class="fa-solid fa-house text-base"></i>
+            </a>
+
+            <a href="https://github.com/Nted3xec" target="_blank" rel="noopener" class="clay-icon-btn" aria-label="Source Code">
+                <i class="fa-brands fa-github text-xl"></i>
+            </a>
+        </div>
+    </div>
+</header>
+
+<div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+<aside id="sidebar" class="sidebar" aria-hidden="true">
+    <div class="flex items-center justify-between pb-4 mb-4 border-b-4 border-black">
+        <div>
+            <h2 class="font-black text-base">Endpoints</h2>
+            <span class="text-[10px] font-bold tracking-widest" style="color:#A78BFA">PILIH UNTUK MENCOBA</span>
+        </div>
+
+        <button id="sidebar-close" class="clay-icon-btn" aria-label="Tutup menu">
+            <i class="fa-solid fa-xmark text-base"></i>
+        </button>
+    </div>
+
+    <div class="relative mb-4">
+        <input type="text" id="search-input" placeholder="Cari endpoint..." class="clay-input pl-11 h-12">
+        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-xs"></i>
+    </div>
+
+    <div id="sidebar-tree" class="flex-1 overflow-y-auto flex flex-col gap-3 pr-1"></div>
+
+    <div id="no-results" class="hidden flex-col items-center justify-center py-8 text-center">
+        <i class="fa-solid fa-magnifying-glass text-3xl mb-2"></i>
+        <p class="font-bold text-base">Endpoint tidak ditemukan</p>
+    </div>
+
+    <div class="pt-3 mt-3 border-t-4 border-black text-center">
+        <p class="font-mono text-[10px] font-semibold uppercase tracking-widest">
+            Powered by <span style="color:#6D28D9">Teddy</span> &bull; 2026
+        </p>
+    </div>
+</aside>
+
+<main class="flex-grow max-w-7xl mx-auto w-full px-5 py-8 grid lg:grid-cols-12 gap-8 items-start relative z-10">
+
+    <aside class="lg:col-span-4 lg:sticky lg:top-24 flex flex-col gap-6 h-fit min-w-0">
+        <div class="clay-console reveal">
+            <div class="clay-console-screen flex flex-col h-[380px] overflow-hidden relative">
+                <div class="px-4 py-3 flex items-center gap-2 border-b-2 border-white/10">
+                    <div class="flex gap-2">
+                        <div class="w-3 h-3 rounded-full" style="background:#FF2E4D"></div>
+                        <div class="w-3 h-3 rounded-full" style="background:#FFE600"></div>
+                        <div class="w-3 h-3 rounded-full" style="background:#00E676"></div>
+                    </div>
+
+                    <span class="flex-1 text-center text-[10px] font-bold tracking-widest text-slate-400">
+                        root@nted ~
+                    </span>
+                </div>
+
+                <div id="term-logs" class="font-mono p-4 text-[11px] overflow-y-auto flex-1 space-y-1.5 leading-relaxed"></div>
+
+                <div id="term-input-line" class="hidden px-4 pb-3 pt-2 border-t-2 border-white/10 font-mono">
+                    <span class="text-emerald-400 font-bold mr-2">➜</span>
+                    <span class="text-sky-400 font-bold mr-2">~</span>
+                    <span class="inline-block w-2 h-4 bg-slate-400 align-middle blink-cursor"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="clay-card p-5 reveal">
+            <div class="flex flex-col gap-3">
+
+                <div class="flex justify-between items-center rounded-2xl p-3.5" style="background:#F5F3FF">
+                    <span class="flex items-center gap-2 text-xs font-bold">
+                        <i class="fa-regular fa-clock"></i>
+                        WAKTU (WIB)
+                    </span>
+                    <span id="server-time" class="font-mono font-black text-sm">--:--:--</span>
+                </div>
+
+                <div class="flex justify-between items-center rounded-2xl p-3.5" style="background:#F5F3FF">
+                    <span class="flex items-center gap-2 text-xs font-bold">
+                        <i class="fa-regular fa-calendar"></i>
+                        TANGGAL
+                    </span>
+                    <span id="server-date" class="font-mono font-bold text-sm">--/--/----</span>
+                </div>
+
+                <div class="flex justify-between items-center rounded-2xl p-3.5" style="background:#F5F3FF">
+                    <span class="flex items-center gap-2 text-xs font-bold">
+                        <i class="fa-solid fa-battery-half"></i>
+                        BATERAI
+                    </span>
+                    <span id="stat-battery" class="font-black text-sm font-mono">--%</span>
+                </div>
+
+                <div class="flex justify-between items-center rounded-2xl p-3.5" style="background:#F5F3FF">
+                    <span class="flex items-center gap-2 text-xs font-bold">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        DEVICE
+                    </span>
+                    <span id="stat-device" class="font-black text-sm">Unknown</span>
+                </div>
+
+            </div>
+        </div>
+    </aside>
+
+    <section class="lg:col-span-8 min-h-[50vh] w-full min-w-0">
+        <div id="intro-view" class="clay-card p-7 reveal"></div>
+        <div id="endpoint-view" class="hidden flex-col gap-4"></div>
+    </section>
+
+</main>
+
+<div id="custom-toast" class="fixed bottom-6 right-6 z-[100] transform translate-y-32 opacity-0 transition-all duration-300">
+    <div class="flex items-center gap-3 px-5 py-3.5 rounded-2xl">
+        <div class="w-6 h-6 rounded-full flex items-center justify-center">
+            <i class="fa-solid fa-check text-xs"></i>
+        </div>
+
+        <span id="toast-message" class="tracking-wide font-bold text-sm">
+            SUCCESS
+        </span>
+    </div>
+</div>
+
+<script src="/docs/docs.js"></script>
+</body>
+</html>

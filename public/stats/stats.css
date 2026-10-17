@@ -1,0 +1,417 @@
+:root{
+  /* Palet Pop Art */
+  --pop-black:#0A0A0A;
+  --pop-white:#FFFDF5;
+  --pop-yellow:#FFE600;
+  --pop-red:#FF2E4D;
+  --pop-pink:#FF4FBA;
+  --pop-cyan:#00E5FF;
+  --pop-blue:#2E5BFF;
+  --pop-purple:#A020F0;
+  --pop-orange:#FF7A00;
+  --pop-green:#00E676;
+
+  --pop-shadow:7px 7px 0 0 var(--pop-black);
+  --pop-shadow-sm:5px 5px 0 0 var(--pop-black);
+  --pop-shadow-lg:10px 10px 0 0 var(--pop-black);
+  --pop-border:4px solid var(--pop-black);
+
+  /* Backward compat — semua var lama tetap valid */
+  --nb-black:var(--pop-black);
+  --nb-white:var(--pop-white);
+  --nb-yellow:var(--pop-yellow);
+  --nb-pink:var(--pop-pink);
+  --nb-blue:var(--pop-blue);
+  --nb-green:var(--pop-green);
+  --nb-purple:var(--pop-purple);
+  --nb-orange:var(--pop-orange);
+  --nb-red:var(--pop-red);
+
+  --nb-shadow:var(--pop-shadow);
+  --nb-shadow-sm:var(--pop-shadow-sm);
+  --nb-shadow-lg:var(--pop-shadow-lg);
+  --nb-border:var(--pop-border);
+}
+
+*{
+  font-family:'Bangers','Luckiest Guy',cursive,sans-serif;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+  letter-spacing:.03em;
+}
+
+.font-mono{
+  font-family:'JetBrains Mono',monospace;
+}
+
+html, body{
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
+}
+
+/* =========================================================
+   BODY — HALFTONE DOTS + STARBURST
+   ========================================================= */
+body{
+  background:var(--pop-yellow);
+  background-image:
+    radial-gradient(circle, var(--pop-black) 1.2px, transparent 1.6px),
+    radial-gradient(circle, var(--pop-black) 1.2px, transparent 1.6px);
+  background-size:22px 22px;
+  background-position:0 0, 11px 11px;
+  color:var(--pop-black);
+  min-height:100vh;
+  position:relative;
+}
+
+body::before,
+body::after{
+  content:'';
+  position:fixed;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:0;
+  animation:spin 60s linear infinite;
+}
+body::before{
+  top:-120px; left:-120px;
+  background:repeating-conic-gradient(
+    from 0deg,
+    var(--pop-red) 0deg 10deg,
+    transparent 10deg 20deg
+  );
+  opacity:.14;
+}
+body::after{
+  bottom:-120px; right:-120px;
+  background:repeating-conic-gradient(
+    from 0deg,
+    var(--pop-cyan) 0deg 10deg,
+    transparent 10deg 20deg
+  );
+  opacity:.14;
+}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+
+h1, h2, h3, .font-black{
+  font-family:'Bangers','Luckiest Guy',cursive !important;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  -webkit-text-stroke:1.2px var(--pop-black);
+  text-shadow:3px 3px 0 var(--pop-red);
+}
+
+/* Blob dimatikan total */
+.blob{display:none !important}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{
+  background:var(--pop-white);
+  border-left:3px solid var(--pop-black);
+}
+::-webkit-scrollbar-thumb{
+  background:var(--pop-red);
+  border:3px solid var(--pop-black);
+}
+::-webkit-scrollbar-thumb:hover{background:var(--pop-pink)}
+
+/* =========================================================
+   ICON BUTTON
+   ========================================================= */
+.clay-icon-btn{
+  --c:#FFFDF5;
+  --s:#0A0A0A;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+  background:var(--c);
+  border:4px solid var(--pop-black);
+  box-shadow:5px 5px 0 0 var(--s);
+  transition:transform .08s ease, box-shadow .08s ease, background .15s ease;
+  cursor:pointer;
+  color:var(--pop-black);
+  text-decoration:none;
+  flex-shrink:0;
+}
+.clay-icon-btn:hover{
+  background:var(--pop-cyan);
+  transform:translate(2px,2px) rotate(-8deg);
+  box-shadow:3px 3px 0 0 var(--s);
+}
+.clay-icon-btn:active{
+  transform:translate(5px,5px) rotate(0);
+  box-shadow:0 0 0 0 var(--s);
+}
+
+/* =========================================================
+   LINK (tombol DOCS)
+   ========================================================= */
+.clay-link{
+  display:inline-flex;
+  align-items:center;
+  padding:10px 20px;
+  border-radius:0;
+  font-family:'Bangers','Luckiest Guy',cursive;
+  font-size:16px;
+  font-weight:400;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  background:var(--pop-black);
+  color:var(--pop-white);
+  border:4px solid var(--pop-black);
+  box-shadow:5px 5px 0 0 var(--pop-pink);
+  text-decoration:none;
+  transition:transform .08s ease, box-shadow .08s ease, background .15s ease, color .15s ease;
+}
+.clay-link:hover{
+  background:var(--pop-yellow);
+  color:var(--pop-black);
+  transform:translate(-2px,-2px) rotate(-1deg);
+  box-shadow:7px 7px 0 0 var(--pop-pink);
+}
+.clay-link:active{
+  transform:translate(5px,5px) rotate(0);
+  box-shadow:0 0 0 0 var(--pop-pink);
+}
+
+/* =========================================================
+   STAT CARD
+   ========================================================= */
+.clay-stat-card{
+  background:var(--pop-white);
+  border-radius:0;
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+  border:4px solid var(--pop-black);
+  box-shadow:var(--pop-shadow-lg);
+}
+
+/* Comic bullet corner */
+.clay-stat-card::before{
+  content:'';
+  position:absolute;
+  top:-14px; left:-14px;
+  width:34px; height:34px;
+  background:var(--pop-red);
+  border:3px solid var(--pop-black);
+  border-radius:50%;
+  z-index:2;
+  box-shadow:2px 2px 0 var(--pop-black);
+}
+
+/* Judul label kecil di dalam card */
+.clay-stat-card h3{
+  color:#3A3A3A !important;
+  font-family:'Bangers',cursive !important;
+  font-size:14px !important;
+  letter-spacing:.12em !important;
+  -webkit-text-stroke:0 !important;
+  text-shadow:none !important;
+  text-transform:uppercase;
+}
+
+/* Nilai besar (uptime, platform, cpu) */
+.clay-stat-card p.font-mono.font-black,
+.clay-stat-card #uptime,
+.clay-stat-card #platform,
+.clay-stat-card #cpu-load{
+  color:var(--pop-black) !important;
+  font-weight:800;
+  font-family:'JetBrains Mono',monospace !important;
+}
+
+/* Badge kecil (arch, node-ver) */
+.clay-stat-card span.px-2.py-1{
+  border:3px solid var(--pop-black) !important;
+  border-radius:0 !important;
+  font-family:'Bangers',cursive !important;
+  font-size:13px !important;
+  font-weight:400 !important;
+  color:var(--pop-black) !important;
+  letter-spacing:.08em !important;
+  text-transform:uppercase;
+  box-shadow:2px 2px 0 var(--pop-black);
+  background:var(--pop-yellow) !important;
+}
+
+/* =========================================================
+   STAT ICON
+   ========================================================= */
+.clay-stat-icon{
+  --c:#FF4FBA;
+  --s:#0A0A0A;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  color:var(--pop-black);
+  background:var(--c);
+  border:4px solid var(--pop-black);
+  box-shadow:5px 5px 0 0 var(--s);
+  flex-shrink:0;
+  position:relative;
+}
+.clay-stat-icon::before{
+  content:'';
+  position:absolute;
+  inset:-12px;
+  border-radius:50%;
+  background:repeating-conic-gradient(
+    from 0deg,
+    var(--pop-yellow) 0deg 12deg,
+    transparent 12deg 24deg
+  );
+  opacity:.6;
+  pointer-events:none;
+  animation:spin 14s linear infinite;
+  z-index:-1;
+}
+
+/* =========================================================
+   MEMORY BAR
+   ========================================================= */
+.mem-track{
+  height:32px;
+  border-radius:0;
+  background:var(--pop-white);
+  border:4px solid var(--pop-black);
+  overflow:hidden;
+  position:relative;
+  box-shadow:inset 0 0 0 2px var(--pop-white);
+}
+
+.mem-fill{
+  height:100%;
+  border-radius:0;
+  background:var(--pop-green);
+  background-image:repeating-linear-gradient(
+    45deg,
+    rgba(10,10,10,.22) 0 6px,
+    transparent 6px 12px
+  );
+  border-right:4px solid var(--pop-black);
+  transition:width .5s cubic-bezier(.5,1.8,.4,1), background-color .3s ease;
+  width:0%;
+  box-shadow:inset 0 0 0 2px rgba(10,10,10,.08);
+}
+
+/* Varian warna sesuai beban */
+.mem-fill.warn{
+  background-color:var(--pop-yellow);
+  background-image:repeating-linear-gradient(
+    45deg,
+    rgba(10,10,10,.22) 0 6px,
+    transparent 6px 12px
+  );
+}
+.mem-fill.danger{
+  background-color:var(--pop-red);
+  background-image:repeating-linear-gradient(
+    45deg,
+    rgba(10,10,10,.28) 0 6px,
+    transparent 6px 12px
+  );
+}
+
+/* =========================================================
+   SHIMMER
+   ========================================================= */
+.clay-shimmer{
+  background:var(--pop-white);
+  background-image:
+    repeating-linear-gradient(45deg,
+      var(--pop-white) 0 6px,
+      #F0ECDD 6px 12px);
+  border:3px solid var(--pop-black);
+  border-radius:0;
+  position:relative;
+  overflow:hidden;
+  display:inline-block;
+  vertical-align:middle;
+}
+.clay-shimmer::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(100deg,
+    transparent 20%,
+    rgba(255,79,186,.65) 50%,
+    transparent 80%);
+  transform:translateX(-100%);
+  animation:clayShine 1.3s linear infinite;
+}
+@keyframes clayShine{
+  to{transform:translateX(100%)}
+}
+
+/* =========================================================
+   REVEAL
+   ========================================================= */
+.reveal{
+  opacity:0;
+  transform:translateY(26px) scale(.95) rotate(-2deg);
+  transition:opacity .5s cubic-bezier(.5,1.8,.4,1),
+              transform .5s cubic-bezier(.5,1.8,.4,1);
+}
+.reveal.in{
+  opacity:1;
+  transform:translateY(0) scale(1) rotate(0);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media(max-width:640px){
+  .clay-stat-card{
+    padding:20px;
+    box-shadow:7px 7px 0 0 var(--pop-black);
+  }
+  .clay-stat-icon{
+    width:48px;
+    height:48px;
+    font-size:19px;
+  }
+  .clay-stat-card h3{
+    font-size:12px !important;
+  }
+  .clay-link{
+    padding:8px 16px;
+    font-size:14px;
+  }
+  .mem-track{height:26px}
+  .clay-icon-btn{width:42px;height:42px;font-size:15px}
+  body::before,
+  body::after{
+    width:220px;
+    height:220px;
+  }
+  body::before{top:-90px;left:-90px}
+  body::after{bottom:-90px;right:-90px}
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+@media(prefers-reduced-motion: reduce){
+  .reveal{transition:none;opacity:1;transform:none}
+  .clay-shimmer::after{animation:none}
+  .mem-fill{transition:none}
+  .clay-icon-btn, .clay-link{transition:none}
+  body::before, body::after{animation:none}
+  .clay-stat-icon::before{animation:none}
+}
